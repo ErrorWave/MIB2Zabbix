@@ -1,0 +1,105 @@
+-- Sample MIB file for testing the converter
+-- This is a subset of SNMPv2-MIB for demonstration
+
+SNMPv2-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    MODULE-IDENTITY, OBJECT-TYPE, Integer32,
+    Counter32, enterprises
+        FROM SNMPv2-SMI
+    DisplayString
+        FROM SNMPv2-TC;
+
+snmpModules MODULE-IDENTITY
+    LAST-UPDATED "202603050000Z"
+    ORGANIZATION "Example Organization"
+    CONTACT-INFO "contact@example.org"
+    DESCRIPTION "A sample MIB for testing the MIB to Zabbix converter"
+    REVISION "202603050000Z"
+    DESCRIPTION "Initial version"
+    ::= { enterprises 99999 1 }
+
+system OBJECT IDENTIFIER ::= { snmpModules 1 1 }
+interfaces OBJECT IDENTIFIER ::= { snmpModules 2 1 }
+
+-- System Objects
+sysDescr OBJECT-TYPE
+    SYNTAX DisplayString
+    MAX-ACCESS read-only
+    DESCRIPTION "A textual description of the entity"
+    ::= { system 1 }
+
+sysObjectID OBJECT-TYPE
+    SYNTAX OBJECT IDENTIFIER
+    MAX-ACCESS read-only
+    DESCRIPTION "The vendor's authoritative identification"
+    ::= { system 2 }
+
+sysUpTime OBJECT-TYPE
+    SYNTAX Integer32
+    MAX-ACCESS read-only
+    DESCRIPTION "The time since the network management portion of the system was last re-initialized"
+    ::= { system 3 }
+
+sysContact OBJECT-TYPE
+    SYNTAX DisplayString
+    MAX-ACCESS read-write
+    DESCRIPTION "The textual identification of the contact person for this managed node"
+    ::= { system 4 }
+
+sysName OBJECT-TYPE
+    SYNTAX DisplayString
+    MAX-ACCESS read-write
+    DESCRIPTION "An administratively-assigned name for this managed node"
+    ::= { system 5 }
+
+sysLocation OBJECT-TYPE
+    SYNTAX DisplayString
+    MAX-ACCESS read-write
+    DESCRIPTION "The physical location of this node"
+    ::= { system 6 }
+
+sysServices OBJECT-TYPE
+    SYNTAX Integer32
+    MAX-ACCESS read-only
+    DESCRIPTION "A value which indicates the set of services offered"
+    ::= { system 7 }
+
+-- Interface Objects
+ifNumber OBJECT-TYPE
+    SYNTAX Integer32
+    MAX-ACCESS read-only
+    DESCRIPTION "The number of network interfaces present on this system"
+    ::= { interfaces 1 }
+
+ifMtu OBJECT-TYPE
+    SYNTAX Integer32
+    MAX-ACCESS read-only
+    DESCRIPTION "The size of the largest datagram which can be sent/received on the interface"
+    ::= { interfaces 2 }
+
+ifInOctets OBJECT-TYPE
+    SYNTAX Counter32
+    MAX-ACCESS read-only
+    DESCRIPTION "The total number of octets received on the interface"
+    ::= { interfaces 3 }
+
+ifOutOctets OBJECT-TYPE
+    SYNTAX Counter32
+    MAX-ACCESS read-only
+    DESCRIPTION "The total number of octets transmitted out of the interface"
+    ::= { interfaces 4 }
+
+ifInErrors OBJECT-TYPE
+    SYNTAX Counter32
+    MAX-ACCESS read-only
+    DESCRIPTION "The number of inbound packets that contained errors"
+    ::= { interfaces 5 }
+
+ifOutErrors OBJECT-TYPE
+    SYNTAX Counter32
+    MAX-ACCESS read-only
+    DESCRIPTION "The number of out-bound packets that could not be transmitted"
+    ::= { interfaces 6 }
+
+END

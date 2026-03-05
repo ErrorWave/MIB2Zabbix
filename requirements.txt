@@ -1,0 +1,13 @@
+# MIB to Zabbix Template Converter
+# No external dependencies required!
+# The application uses only Python standard library:
+# - tkinter (GUI)
+# - re (Regular expressions for parsing)
+# - xml.etree.ElementTree (XML generation)
+# - datetime (Timestamp generation)
+
+# Note: tkinter is usually included with Python installations
+# If you need to install it separately:
+# Ubuntu/Debian: sudo apt-get install python3-tk
+# macOS: brew install python-tk
+# Windows: Included with Python installer
